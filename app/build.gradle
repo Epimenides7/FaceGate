@@ -1,0 +1,89 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    signingConfigs {
+        debug {
+            storeFile file('D:\\wudi.jks')
+            storePassword 'wudi123456'
+            keyAlias 'key0'
+            keyPassword 'wudi123456'
+        }
+    }
+    compileSdkVersion 28
+    buildToolsVersion "28.0.2"
+
+    defaultConfig {
+        applicationId "com.wudi.facegate"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 4
+        versionName "1.0.4"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "arm64-v8a", "armeabi-v7a", "x86", "x86_64"
+//            abiFilters "armeabi-v7a", "x86"
+        }
+        signingConfig signingConfigs.debug
+    }
+
+    greendao {
+        // 指定数据库schema版本号，迁移等操作会用到
+        schemaVersion 1
+        // 设置生成数据库文件的目录，默认是在build中，可以将生成的文件放到我们的java目录中
+        targetGenDir 'src/main/java'
+        // 设置生成的数据库相关文件的包名，默认为entity所在的包名
+        daoPackage 'com.wudi.facegate.greenDao'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    aaptOptions {
+        noCompress "tflite"
+        noCompress "lite"
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation project(path: ':MyFace')
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation 'com.jakewharton:butterknife:8.6.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'com.apkfuns.logutils:library:1.7.5'//Log打印工具
+    /*google官方权限申请框架*/
+    implementation 'pub.devrel:easypermissions:1.2.0'
+    implementation 'com.lzy.net:okgo:3.0.4'//基于okHttp的封装库
+    implementation 'com.android.support:recyclerview-v7:28+'
+    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'//RX权限申请方式 简洁
+    implementation 'org.greenrobot:greendao:3.3.0'
+    /*greenDao数据库升级工具*/
+    implementation 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v2.0.0'
+    /*阿里云图片上传*/
+    implementation 'com.aliyun.dpa:oss-android-sdk:+'
+    /*串口转usb通讯工具*/
+    implementation 'com.github.mik3y:usb-serial-for-android:2.2.2'
+    /*消息传递*/
+    implementation 'org.greenrobot:eventbus:3.0.0'
+
+}

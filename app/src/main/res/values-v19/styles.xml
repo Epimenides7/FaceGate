@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--API 19 (4.4)以上支持-->
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--隐藏顶部状态栏-->
+        <item name="android:windowTranslucentStatus">true</item>
+        <!--隐藏底部操作按钮-->
+        <!--<item name="android:windowTranslucentNavigation">true</item>-->
+    </style>
+</resources>
