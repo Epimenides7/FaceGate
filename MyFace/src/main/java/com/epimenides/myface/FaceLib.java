@@ -27,4 +27,8 @@ public class FaceLib {
 
     // 人脸特征值比对
     public native double compareFeature(float[] feature1, float[] feature2);
+    
+    static {
+        System.loadLibrary("facedetect");
+    }
 }
