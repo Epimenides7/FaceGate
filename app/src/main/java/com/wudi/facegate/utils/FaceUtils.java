@@ -125,7 +125,7 @@ public class FaceUtils {
         int height= irBitmap.getHeight();
         byte[] imageDate = getPixelsRGBA(irBitmap);
         long start = System.currentTimeMillis();
-        int faceInfo[] =  ultraNet.FaceDetect(imageDate, width, height,4);
+        int[] faceInfo =  ultraNet.FaceDetect(imageDate, width, height,4);
         Log.d("Ir_time", "ir 检测一张人脸耗时:" + (System.currentTimeMillis() - start)+"ms");
         List<Integer> Ir_info = new ArrayList<>();
         //faceInfo第一个元素是有无人脸
