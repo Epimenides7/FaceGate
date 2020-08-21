@@ -12,7 +12,11 @@ import android.graphics.Rect;
 public class Box {
     public int[] landmarks = new int[10]; // 人脸的五个landmark值
     private int[] box;                    // 人脸框左上角和右下角的点
-
+    
+    
+    public Box(){
+        box = new int[4];
+    }
 
     public void setBoxLeft(int left) {
         this.box[0] = left;
